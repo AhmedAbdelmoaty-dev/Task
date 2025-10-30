@@ -36,7 +36,3 @@ This project implements a **Products Management system** with a **Products table
 - CRUD forms for products management.  
 - Search, pagination, and filter functionalities in the UI.  
 
-## Folder Structure
-
-### Backend
-
