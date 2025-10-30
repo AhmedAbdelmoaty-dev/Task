@@ -1,0 +1,92 @@
+
+<div class="my-4 flex justify-center items-center space-x-2">
+  <input
+    type="text"
+    [(ngModel)]="searchKeyword"
+    (keyup.enter)="onSearch()"
+    placeholder="Search products..."
+    class="w-1/4 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+  />
+
+  <button
+    (click)="onSearch()"
+    class="flex items-center justify-center bg-blue-600 text-white px-4 py-2 rounded-lg shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+  >
+    <span class="material-icons text-white">search</span>
+  </button>
+</div>
+<div class="overflow-x-auto mt-6 px-6">
+  <table class="min-w-full bg-white border border-gray-200 shadow-md rounded-lg">
+    <thead>
+      <tr class="bg-gray-100 text-left text-sm font-medium text-gray-700 uppercase tracking-wider">
+        <th class="px-4 py-3 border-b">ID</th>
+        <th class="px-4 py-3 border-b">SKU</th>
+        <th class="px-4 py-3 border-b">Name</th>
+        <th class="px-4 py-3 border-b">Description</th>
+        <th class="px-4 py-3 border-b">Price</th>
+        <th class="px-4 py-3 border-b">Created At</th>
+        <th class="px-4 py-3 border-b">Updated At</th>
+        <th class="px-4 py-3 border-b text-center">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      @for (product of products(); track product.id) {
+        <tr class="hover:bg-gray-50 transition">
+          <td class="px-4 py-3 border-b">{{ product.id }}</td>
+          <td class="px-4 py-3 border-b">{{ product.sku }}</td>
+          <td class="px-4 py-3 border-b">{{ product.name }}</td>
+          <td class="px-4 py-3 border-b">{{ product.description }}</td>
+          <td class="px-4 py-3 border-b">${{ product.price }}</td>
+          <td class="px-4 py-3 border-b">{{ product.createdAtUtc | date }}</td>
+          <td class="px-4 py-3 border-b">{{ product.updatedAtUtc | date }}</td>
+          <td class="px-4 py-3 border-b text-center space-x-2">
+            <button
+              class="px-3 py-1 bg-purple-500 hover:bg-purple-600 pointer text-white rounded text-sm"
+              (click)="editProduct(product)">
+              Edit
+            </button>
+            <button
+              class="px-3 py-1 bg-red-500 hover:bg-red-600 pointer text-white rounded text-sm"
+              (click)="deleteProduct(product)">
+              Delete
+            </button>
+          </td>
+        </tr>
+      }
+
+    </tbody>
+  </table>
+</div>
+<div style="display:flex; justify-content: center; align-items: center; gap: 20px; ">
+  <mat-paginator [length]="totalCount()"
+                [pageSize]="params().pageSize"
+                [pageSizeOptions]="[5, 10, 25, 100]"
+                (page)="onPageChanged($event)"
+                aria-label="Select page">
+  </mat-paginator>
+  
+  <div class="flex justify-center items-center gap-2 my-4">
+  <input 
+    type="checkbox" 
+    id="includeDeleted"
+    [(ngModel)]="includeDeleted"
+    (change)="onIncludeDeletedChanged()"
+    class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+  />
+  <label for="includeDeleted" class="text-gray-700 text-sm">Include Deleted Products</label>
+  
+  <div class="ml-8 flex gap-15">
+    <button routerLink="/create" class="bg-green-600 rounded-xl text-white px-2 py-2  hover:bg-green-700 transition duration-200">create product</button>
+    
+    <button
+      (click)="exportToCsv()"
+      class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+    >
+      Export to CSV
+    </button>
+  </div>
+ 
+
+</div>
+</div>

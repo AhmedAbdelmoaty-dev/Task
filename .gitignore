@@ -1,0 +1,30 @@
+# =========================
+# .NET / Backend
+# =========================
+bin/
+obj/
+*.user
+*.suo
+*.csproj.user
+*.vscode/
+*.vs/
+*.db
+*.log
+appsettings*.json  # optional: ignore local config
+*.nupkg
+*.zip
+*.publish.xml
+node_modules/
+
+# =========================
+# Angular / Client
+# =========================
+Client/MyTask/node_modules/
+Client/MyTask/dist/
+Client/MyTask/out-tsc/
+Client/MyTask/.angular/
+Client/MyTask/.idea/
+Client/MyTask/*.log
+Client/MyTask/package-lock.json  # optional if you want Yarn or pnpm
+Client/MyTask/.vscode/
+Client/MyTask/.env

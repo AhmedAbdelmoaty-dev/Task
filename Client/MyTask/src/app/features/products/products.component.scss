@@ -1,0 +1,22 @@
+.edit-btn {
+  background-color: #1976d2;
+  color: white;
+  margin-right: 8px;
+}
+
+.delete-btn {
+  background-color: #d32f2f;
+  color: white;
+}
+
+td.mat-cell {
+  display: flex;
+  gap: 8px;
+}
+
+.table-container {
+ max-height: 600px; 
+  overflow-y: auto;  
+  margin: 20px auto;
+  width: 95%;
+}
